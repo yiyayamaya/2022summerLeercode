@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class 二叉树的右视图 {
-    static List<Integer> res=new ArrayList<>();
+
 
     public static void main(String[] args) {
+        TreeNode root=new TreeNode(1);
+        root.left=new TreeNode(2);
+        root.right=new TreeNode(3);
+        root.left.right=new TreeNode(5);
+        root.right.right=new TreeNode(4);
+        rightSideView(root);
 
     }
 
@@ -19,11 +25,11 @@ public class 二叉树的右视图 {
     public static List<Integer> recursive(TreeNode root){
         if(root==null)
             return null;
+        List<Integer> res=new ArrayList<>();
         res.add(root.val);
         List<Integer> right=recursive(root.right);
         List<Integer> left=recursive(root.left);
 
-        res.remove(res.size()-1);
         if(right!=null)
             res.addAll(right);
         else if(left!=null)
